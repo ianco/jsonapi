@@ -5,11 +5,13 @@ import "fmt"
 var currentId int
 
 var todos Todos
+var config ConfigData
 
 // Give us some seed data
 func init() {
     RepoCreateTodo(Todo{Name: "Write presentation"})
     RepoCreateTodo(Todo{Name: "Host meetup"})
+    RepoCreateUpdateConfig(ConfigData{DifficultyRating: "2", Startup: StartupData{AiNationCount: "1", StartupCash: "2000", AiStartupCash: "1000", AiAggressiveness: "1", StartupIndependentTown: "15", StartupRawSite: "5", DifficultyLevel: "1" }})
 }
 
 func RepoFindTodo(id int) Todo {
@@ -38,4 +40,14 @@ func RepoDestroyTodo(id int) error {
     }
     return fmt.Errorf("Could not find Todo with id of %d to delete", id)
 }
+
+func RepoFindConfig() ConfigData {
+    return config
+}
+
+func RepoCreateUpdateConfig(c ConfigData) ConfigData {
+    config = c
+    return config
+}
+
 

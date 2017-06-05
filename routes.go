@@ -36,5 +36,23 @@ var routes = Routes{
         "/todos",
         TodoCreate,
     },
+    Route{
+        "ConfigShow",
+        "GET",
+        "/config",
+        ConfigShow,
+    },
+    Route{
+        "ConfigUpdate",
+        "POST",
+        "/config",
+        ConfigUpdate,
+    },
+    Route{
+        "ConfigUpdate",
+        "PUT",
+        "/config",
+        ConfigUpdate,
+    },
 }
 
