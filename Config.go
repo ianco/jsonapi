@@ -2,17 +2,17 @@ package main
 
 
 type StartupData struct {
-    AiNationCount          string `json:"ai_nation_count"`
-    StartupCash            string `json:"start_up_cash"`
-    AiStartupCash          string `json:"ai_start_up_cash"`
-    AiAggressiveness       string `json:"ai_aggressiveness"`
-    StartupIndependentTown string `json:"start_up_independent_town"`
-    StartupRawSite         string `json:"start_up_raw_site"`
-    DifficultyLevel        string `json:"difficulty_level"`
+    AiNationCount          uint8  `json:"ai_nation_count"`
+    StartupCash            uint8  `json:"start_up_cash"`
+    AiStartupCash          uint8  `json:"ai_start_up_cash"`
+    AiAggressiveness       uint8  `json:"ai_aggressiveness"`
+    StartupIndependentTown uint8  `json:"start_up_independent_town"`
+    StartupRawSite         uint8  `json:"start_up_raw_site"`
+    DifficultyLevel        uint8  `json:"difficulty_level"`
 }
 
 type ConfigData struct {
-    DifficultyRating string      `json:"difficulty_rating"`
+    DifficultyRating uint8       `json:"difficulty_rating"`
     Startup          StartupData `json:"startup"`
 }
 

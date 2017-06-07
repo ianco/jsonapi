@@ -1,6 +1,7 @@
 package main
 
 import (
+    "log"
     "encoding/json"
     "fmt"
     "net/http"
@@ -81,19 +82,23 @@ func ConfigUpdate(w http.ResponseWriter, r *http.Request) {
     if err := r.Body.Close(); err != nil {
         panic(err)
     }
+    log.Printf(
+            "body: %s",
+            body,
+    )
     if err := json.Unmarshal(body, &c); err != nil {
         w.Header().Set("Content-Type", "application/json; charset=UTF-8")
         w.WriteHeader(422) // unprocessable entity
         if err := json.NewEncoder(w).Encode(err); err != nil {
             panic(err)
         }
-    }
-
-    c2 := RepoCreateUpdateConfig(c)
-    w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-    w.WriteHeader(http.StatusCreated)
-    if err := json.NewEncoder(w).Encode(c2); err != nil {
-        panic(err)
+    } else {
+        c2 := RepoCreateUpdateConfig(c)
+        w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+        w.WriteHeader(http.StatusCreated)
+        if err := json.NewEncoder(w).Encode(c2); err != nil {
+            panic(err)
+        }
     }
 }
 
