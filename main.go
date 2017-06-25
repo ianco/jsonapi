@@ -1,14 +1,14 @@
 package main
 
 import (
-    "log"
-    "net/http"
+	"log"
+	"net/http"
+	rest "github.com/ianco/jsonapi/rest"
 )
 
 func main() {
 
-    router := NewRouter()
+	router := rest.NewRouter()
 
-    log.Fatal(http.ListenAndServe(":8080", router))
+	log.Fatal(http.ListenAndServe(":8080", router))
 }
-
