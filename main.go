@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
+
 	rest "github.com/ianco/jsonapi/rest"
 )
 

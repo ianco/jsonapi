@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+
 	model "github.com/ianco/jsonapi/model"
 )
 
@@ -44,7 +45,10 @@ func ConfigUpdate(w http.ResponseWriter, r *http.Request) {
 			panic(err)
 		}
 	} else {
-		c2 := RepoCreateUpdateConfig(c)
+		c2, err := RepoCreateUpdateConfig(c)
+		if err != nil {
+			panic(err)
+		}
 		w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 		w.WriteHeader(http.StatusCreated)
 		if err := json.NewEncoder(w).Encode(c2); err != nil {
