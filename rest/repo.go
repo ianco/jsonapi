@@ -33,10 +33,18 @@ func init() {
 	chain := hlfSetup.Chain
 	//client := hlfSetup.Client
 
-	fmt.Printf("InstallAndInstantiateMyCC()!!!")
-	if err := hlfSetup.InstallAndInstantiateCC(); err != nil {
-		fmt.Printf("InstallAndInstantiateMyCC return error: %v", err)
+	isitinstalled, err := hlfSetup.IsInstalledChaincode(hlfSetup.ChainCodeID)
+	if err != nil {
+		fmt.Printf("IsInstalledChaincode return error: %v", err)
 		os.Exit(1)
+	}
+	fmt.Printf("Is it installed?  %t", isitinstalled)
+	if !isitinstalled {
+		fmt.Printf("InstallAndInstantiateMyCC()!!!")
+		if err := hlfSetup.InstallAndInstantiateCC(); err != nil {
+			fmt.Printf("InstallAndInstantiateMyCC return error: %v", err)
+			os.Exit(1)
+		}
 	}
 
 	// Test Query Info - retrieve values before transaction
